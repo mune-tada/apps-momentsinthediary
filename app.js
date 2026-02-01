@@ -3,6 +3,14 @@ const state = {
   query: '',
 }
 
+function hashHue(input) {
+  const text = String(input ?? '')
+  let hash = 0
+  for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) | 0
+  const hue = Math.abs(hash) % 360
+  return hue
+}
+
 function bySlugThenName(a, b) {
   const aSlug = (a.slug ?? '').toLowerCase()
   const bSlug = (b.slug ?? '').toLowerCase()
@@ -39,7 +47,10 @@ function escapeHtml(text) {
 function matches(app, query) {
   if (!query) return true
   const q = query.toLowerCase()
-  const haystack = [app.slug, app.name, app.path, app.destination].filter(Boolean).join(' ').toLowerCase()
+  const haystack = [app.slug, app.name, app.path, app.destination, app.description, ...(app.tags ?? [])]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
   return haystack.includes(q)
 }
 
@@ -57,7 +68,7 @@ function render() {
   updatedEl.textContent = new Date().toLocaleString()
 
   if (apps.length === 0) {
-    listEl.innerHTML = '<div class="empty">該当するアプリがありません。</div>'
+    listEl.innerHTML = '<div class="empty">該当する作品がありません。</div>'
     return
   }
 
@@ -67,27 +78,47 @@ function render() {
       const name = escapeHtml(app.name ?? slug)
       const path = ensureTrailingSlash(normalizePath(app.path ?? `/${slug}/`))
       const destination = app.destination ? String(app.destination) : ''
+      const description = escapeHtml(app.description ?? '')
+      const tags = Array.isArray(app.tags) ? app.tags.slice(0, 6) : []
+      const hue = hashHue(app.slug ?? app.name ?? '')
 
       return `
-        <a class="card" href="${escapeHtml(path)}">
-          <div class="cardTop">
-            <div>
-              <div class="appName">${name}</div>
-              <div class="kv">
-                <div class="row"><span>入口</span> <code>${escapeHtml(path)}</code></div>
-                ${
-                  destination
-                    ? `<div class="row"><span>遷移先</span> <code>${escapeHtml(destination)}</code></div>`
-                    : ''
-                }
+        <article class="card" style="--hue: ${hue}">
+          <a class="cardCoverLink" href="${escapeHtml(path)}" aria-label="${name} を開く">
+            <div class="cover"></div>
+          </a>
+
+          <div class="content">
+            <div class="cardHeader">
+              <div>
+                <a class="cardTitleLink" href="${escapeHtml(path)}">${name}</a>
+                ${description ? `<div class="desc">${description}</div>` : `<div class="desc"></div>`}
               </div>
+              <span class="badge">${slug}</span>
             </div>
-            <span class="badge">${slug}</span>
+
+            <div class="metaRow">
+              <span class="path">${escapeHtml(path)}</span>
+            </div>
+
+            ${
+              tags.length
+                ? `<div class="tags">${tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+                : ''
+            }
+
+            <div class="actions">
+              <div class="actionsLeft">
+                <a class="btn btnPrimary" href="${escapeHtml(path)}">Open</a>
+              </div>
+              ${
+                destination
+                  ? `<a class="linkMuted" href="${escapeHtml(destination)}" target="_blank" rel="noopener noreferrer">Vercel</a>`
+                  : ''
+              }
+            </div>
           </div>
-          <div class="actions" aria-hidden="true">
-            <span class="btn">開く</span>
-          </div>
-        </a>
+        </article>
       `
     })
     .join('')
@@ -115,8 +146,7 @@ async function main() {
     await loadApps()
   } catch (e) {
     const listEl = document.getElementById('app-list')
-    listEl.innerHTML =
-      '<div class="empty">apps.json の読み込みに失敗しました。<code>/apps.json</code> がデプロイに含まれているか確認してください。</div>'
+    listEl.innerHTML = '<div class="empty">一覧の読み込みに失敗しました。</div>'
     console.error(e)
     return
   }
@@ -124,4 +154,3 @@ async function main() {
 }
 
 main()
-

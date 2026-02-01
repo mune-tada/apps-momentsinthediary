@@ -1,0 +1,9 @@
+{
+  "name": "app-router",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js"
+  }
+}
+

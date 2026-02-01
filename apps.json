@@ -4,14 +4,9 @@
       "slug": "ishikettei",
       "name": "ishikettei",
       "path": "/ishikettei/",
-      "destination": "https://ishikettei.vercel.app/ishikettei/"
-    },
-    {
-      "slug": "shutdown",
-      "name": "shutdown",
-      "path": "/shutdown/",
-      "destination": "https://shutdown.vercel.app/shutdown/"
+      "destination": "https://ishikettei.vercel.app/ishikettei/",
+      "description": "Vite + React の作品ページ。",
+      "tags": ["Vite", "React"]
     }
   ]
 }
-
