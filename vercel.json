@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/ishikettei",
-      "destination": "https://ishikettei.vercel.app/ishikettei/"
+      "destination": "https://ishikettei-mune-tadas-projects.vercel.app/"
     },
     {
       "source": "/ishikettei/:path*",
-      "destination": "https://ishikettei.vercel.app/ishikettei/:path*"
+      "destination": "https://ishikettei-mune-tadas-projects.vercel.app/:path*"
     }
   ]
 }
