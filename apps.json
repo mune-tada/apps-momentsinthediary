@@ -1,0 +1,17 @@
+{
+  "apps": [
+    {
+      "slug": "ishikettei",
+      "name": "ishikettei",
+      "path": "/ishikettei/",
+      "destination": "https://ishikettei.vercel.app/ishikettei/"
+    },
+    {
+      "slug": "shutdown",
+      "name": "shutdown",
+      "path": "/shutdown/",
+      "destination": "https://shutdown.vercel.app/shutdown/"
+    }
+  ]
+}
+

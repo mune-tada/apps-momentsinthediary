@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Router</title>
+    <meta name="description" content="app.momentsinthediary.com の入口（ルーター）" />
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <div class="title">App Router</div>
+          <div class="subtitle">app.momentsinthediary.com の入口（サブパスで複数アプリを一覧）</div>
+        </div>
+        <div class="meta">
+          <div>apps: <span id="app-count">-</span></div>
+          <div>updated: <span id="updated-at">-</span></div>
+        </div>
+      </header>
+
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search: ishikettei / shutdown / /foo / vercel.app …" />
+      </div>
+
+      <main class="grid" id="app-list" aria-live="polite"></main>
+
+      <footer>
+        <div>追加方法：<code>router/apps.json</code> に1件追加 → <code>router/vercel.json</code> に rewrites 追加 → Router を再デプロイ。</div>
+      </footer>
+    </div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
+
