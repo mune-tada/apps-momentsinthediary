@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/ishikettei", "destination": "/ishikettei/" },
+    {
+      "source": "/ishikettei/:path*",
+      "destination": "https://ishikettei.vercel.app/ishikettei/:path*"
+    },
+
+    { "source": "/shutdown", "destination": "/shutdown/" },
+    {
+      "source": "/shutdown/:path*",
+      "destination": "https://shutdown.vercel.app/shutdown/:path*"
+    }
+  ]
+}
