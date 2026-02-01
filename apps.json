@@ -4,7 +4,7 @@
       "slug": "ishikettei",
       "name": "ishikettei",
       "path": "/ishikettei/",
-      "destination": "https://ishikettei-gcnd0j0wy-mune-tadas-projects.vercel.app/",
+      "destination": "https://ishikettei-mune-tadas-projects.vercel.app/ishikettei/",
       "description": "Vite + React の作品ページ。",
       "tags": ["Vite", "React"]
     }
