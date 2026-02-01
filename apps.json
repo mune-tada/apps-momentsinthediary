@@ -2,7 +2,7 @@
   "apps": [
     {
       "slug": "ishikettei",
-      "name": "ishikettei",
+      "name": "迅速な意思決定",
       "path": "/ishikettei/",
       "destination": "https://ishikettei-mune-tadas-projects.vercel.app/ishikettei/",
       "description": "Vite + React の作品ページ。",
