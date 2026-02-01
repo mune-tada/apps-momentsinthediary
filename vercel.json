@@ -2,9 +2,16 @@
   "installCommand": "node -v",
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/ishikettei",
+      "destination": "/ishikettei/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/ishikettei/",
       "destination": "https://ishikettei-mune-tadas-projects.vercel.app/ishikettei/"
     },
     {
