@@ -1,6 +1,12 @@
 {
+  "installCommand": "node -v",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
   "rewrites": [
-    { "source": "/ishikettei", "destination": "/ishikettei/" },
+    {
+      "source": "/ishikettei",
+      "destination": "https://ishikettei.vercel.app/ishikettei/"
+    },
     {
       "source": "/ishikettei/:path*",
       "destination": "https://ishikettei.vercel.app/ishikettei/:path*"

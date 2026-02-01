@@ -2,8 +2,8 @@
   "name": "app-router",
   "private": true,
   "scripts": {
+    "build": "node -e \"console.log('router: no build (static)')\"",
     "dev": "node dev-server.js",
     "start": "node dev-server.js"
   }
 }
-
